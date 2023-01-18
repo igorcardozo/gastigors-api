@@ -2,7 +2,7 @@ import { XataClient } from './xata/index';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { getXataClient } from './xata';
 import { XataRecord, Repository } from '@xata.io/client';
-import { DatabaseModel } from './interfaces/user.model';
+import { DatabaseModel } from './interfaces/database';
 
 @Injectable()
 export class DatabaseService<T> {

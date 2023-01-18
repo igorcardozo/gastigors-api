@@ -15,6 +15,16 @@ const tables = [
       { name: 'lastName', type: 'string', notNull: true, defaultValue: '' },
     ],
   },
+  {
+    name: 'Debts',
+    columns: [
+      { name: 'origin', type: 'link', link: { table: 'Users' } },
+      { name: 'destination', type: 'link', link: { table: 'Users' } },
+      { name: 'amount', type: 'float', notNull: true, defaultValue: '0' },
+      { name: 'prevDebt', type: 'link', link: { table: 'Debts' } },
+      { name: 'deleted', type: 'bool', notNull: true, defaultValue: 'false' },
+    ],
+  },
 ] as const;
 
 export type SchemaTables = typeof tables;
@@ -23,8 +33,12 @@ export type InferredTypes = SchemaInference<SchemaTables>;
 export type Users = InferredTypes['Users'];
 export type UsersRecord = Users & XataRecord;
 
+export type Debts = InferredTypes['Debts'];
+export type DebtsRecord = Debts & XataRecord;
+
 export type DatabaseSchema = {
   Users: UsersRecord;
+  Debts: DebtsRecord;
 };
 
 const DatabaseClient = buildClient();

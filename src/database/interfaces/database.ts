@@ -1,3 +1,5 @@
+export type DatabaseModel = 'Users' | 'Debts';
+
 export interface DatabaseManager<T> {
   create: (data: T) => Promise<T>;
   deleteById: (id: number | string) => Promise<boolean>;
